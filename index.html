@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Zia Birthday</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            padding: 40px;
+            background-color: #1a1a1a;
+            color: #ffffff;
+            line-height: 1.6;
+        }
+        h1 {
+            color: #ff4757;
+            min-height: 1.2em;
+        }
+        p {
+            font-size: 1.2rem;
+            color: #ced4da;
+            min-height: 1.2em;
+        }
+    </style>
+</head>
+<body>
+
+    <h1 id="headline"></h1>
+    <p id="subtext"></p>
+
+    <script>
+        const text1 = "omg! who this in my block?";
+        const text2 = "damn right! dats my handsome sweet birthday boy zia, silly me";
+
+        let index1 = 0;
+        let index2 = 0;
+
+        function typeHeadline() {
+            if (index1 < text1.length) {
+                document.getElementById("headline").innerHTML += text1.charAt(index1);
+                index1++;
+                setTimeout(typeHeadline, 100);
+            } else {
+                setTimeout(typeSubtext, 500);
+            }
+        }
+
+        function typeSubtext() {
+            if (index2 < text2.length) {
+                document.getElementById("subtext").innerHTML += text2.charAt(index2);
+                index2++;
+                setTimeout(typeSubtext, 80);
+            }
+        }
+
+        window.onload = typeHeadline;
+    </script>
+
+</body>
+</html>
