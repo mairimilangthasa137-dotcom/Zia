@@ -1,173 +1,209 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Happy Birthday Zia 💗</title>
-
-<link rel="stylesheet" href="style.css">
+<title>Happy Birthday Zia ❤️</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+body{
+background:#ffddee;
+font-family:'Press Start 2P',cursive;
+overflow-x:hidden;
+color:#5b2c45;
+text-align:center;
+}
+
+section{
+padding:80px 20px;
+}
+
+.hidden{
+display:none;
+}
+
+button{
+padding:15px 30px;
+border:none;
+border-radius:30px;
+background:#ff69b4;
+color:white;
+font-family:'Press Start 2P';
+cursor:pointer;
+margin-top:25px;
+font-size:10px;
+box-shadow:0 10px 20px rgba(0,0,0,.15);
+}
+
+button:hover{
+transform:scale(1.05);
+}
+
+.hero{
+min-height:100vh;
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+position:relative;
+}
+
+.title{
+font-size:28px;
+margin-bottom:25px;
+line-height:1.6;
+}
+
+.message{
+font-size:12px;
+max-width:700px;
+line-height:2;
+}
+
+.online{
+width:220px;
+margin-bottom:25px;
+}
+
+.cat{
+position:fixed;
+bottom:20px;
+left:20px;
+width:120px;
+z-index:100;
+}
+
+.loading{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:#ffddee;
+display:flex;
+justify-content:center;
+align-items:center;
+flex-direction:column;
+z-index:999;
+}
+
+.loadingBar{
+width:250px;
+height:20px;
+background:white;
+border-radius:20px;
+overflow:hidden;
+margin-top:30px;
+}
+
+.loadingFill{
+height:100%;
+width:0%;
+background:#ff69b4;
+animation:load 3s forwards;
+}
+
+@keyframes load{
+100%{
+width:100%;
+}
+}
+
+.loadingText{
+font-size:13px;
+line-height:2;
+}
+
+.section{
+padding:90px 20px;
+}
+
+.memory{
+width:260px;
+border-radius:20px;
+margin:25px;
+box-shadow:0 10px 30px rgba(0,0,0,.15);
+}
+
+.divider{
+width:180px;
+margin:40px auto;
+display:block;
+}
+
+.pretty{
+width:180px;
+margin:20px auto;
+display:block;
+}
+
+.heart{
+width:80px;
+}
+
+.speech{
+width:120px;
+}
+
+.ladybug{
+width:90px;
+}
+
+footer{
+padding:50px;
+font-size:10px;
+}
+
+</style>
 
 </head>
 
 <body>
 
-<!-- Loading Screen -->
+<div class="loading" id="loading">
 
-<div id="loading">
+<div class="loadingText">
 
-<div class="loading-box">
-
-<h1>Loading Birthday Surprise...</h1>
-
-<div class="loading-bar">
-<div class="loading-progress"></div>
-</div>
-
-<p>Please wait... 🌸</p>
-
-</div>
-
-</div>
-
-<!-- Floating Hearts -->
-
-<div id="hearts"></div>
-
-<!-- Floating Sakura -->
-
-<div id="petals"></div>
-
-<!-- Music -->
-
-<audio id="music" loop>
-
-<source src="music.mp3" type="audio/mp3">
-
-</audio>
-
-<button id="musicButton">
-🎀 Play Music
-</button>
-
-<!-- Main -->
-
-<section class="hero">
-
-<h1 id="typingTitle"></h1>
-
-<p id="typingMessage"></p>
-
-<button id="letterButton">
-💌 Open My Letter
-</button>
-
-</section>
-
-<!-- Envelope -->
-
-<section id="letterSection">
-
-<div class="envelope">
-
-<div class="letter">
-
-<h2>To My Sweet Birthday Boy 💗</h2>
-
-<div id="loveLetter"></div>
-
-</div>
-
-</div>
-
-</section>
-
-<!-- Photo -->
-
-<section class="photoSection">
-
-<h2>Our Favourite Memory 📸</h2>
-
-<div class="polaroid">
-
-<img src="ourphoto.jpg" alt="Us">
-
-<p>
-Every memory with you is my favourite one. ❤️
-</p>
-
-</div>
-
-</section>
-
-<!-- Cake -->
-
-<section class="cakeSection">
-
-<h2>🎂 Make A Birthday Wish 🎂</h2>
-
-<div id="cake">
-
-🕯️🕯️🕯️
+Preparing something special...
 
 <br><br>
 
-🎂
+for my favourite person ❤️
 
 </div>
 
-<p>Click the cake!</p>
+<div class="loadingBar">
 
-</section>
+<div class="loadingFill"></div>
 
-<!-- Gift -->
+</div>
 
-<section class="giftSection">
+</div>
 
-<h2>🎁 One Last Surprise...</h2>
+<img src="cat.gif" class="cat">
 
-<button id="giftButton">
+<section class="hero">
 
-Open Gift 🎀
+<img src="online.png" class="online">
+
+<h1 class="title" id="title"></h1>
+
+<p class="message" id="message"></p>
+
+<button id="letterButton">
+
+💌 Open Letter
 
 </button>
 
-<div id="giftMessage">
-
-<h2>Happy Birthday Zia ❤️</h2>
-
-<p>
-
-I hope today makes you smile as much as you make me smile.
-
-Thank you for being such an amazing person.
-
-I'm so lucky to have you.
-
-I love you endlessly.
-
-Have the best birthday ever.
-
-❤️🌸🎂
-
-</p>
-
-</div>
-
 </section>
-
-<footer>
-
-Made with lots and lots of love ❤️
-
-</footer>
-
-<script src="script.js"></script>
-
-</body>
-
-</html>
