@@ -54,5 +54,106 @@
         window.onload = typeHeadline;
     </script>
 
+    <div id="mc-hearts" style="position:fixed;top:0;left:0;width:100vw;height:100vh;pointer-events:none;z-index:9999;overflow:hidden;"></div>
+<script>
+(function() {
+    const container = document.getElementById('mc-hearts');
+    const svg = `data:image/svg+xml;utf8,<svg xmlns="http://w3.org" viewBox="0 0 7 6"><path d="M1,0h1v1h-1zM5,0h1v1h-1zM0,1h3v1h-3zM4,1h3v1h-3zM0,2h7v1h-7zM1,3h5v1h-5zM2,4h3v1h-3zM3,5h1v1h-1z" fill="%23ffcbd5"/></svg>`;
+    setInterval(() => {
+        const heart = document.createElement('div');
+        heart.style.cssText = `position:absolute;width:16px;height:14px;background:url('${svg}') no-repeat;background-size:contain;left:${Math.random()*100}vw;bottom:-20px;opacity:${Math.random()*0.4+0.4};transition:transform 4s linear,opacity 4s linear;image-rendering:pixelated;`;
+        container.appendChild(heart);
+        setTimeout(() => {
+            heart.style.transform = `translateY(-105vh) scale(${Math.random()*0.4+0.8})`;
+            heart.style.opacity = '0';
+        }, 50);
+        setTimeout(() => heart.remove(), 4000);
+    }, 500);
+})();
+</script>
+<canvas id="riceball-canvas" style="position:fixed; top:0; left:0; width:100vw; height:100vh; pointer-events:none; z-index:9999;"></canvas>
+<div id="birthday-text" style="position:fixed; top:50%; left:50%; transform:translate(-50%, -50%); font-family:sans-serif; font-size:24px; text-align:center; color:#fff; background:rgba(0,0,0,0.8); padding:20px; border-radius:10px; opacity:0; transition:opacity 1s ease; pointer-events:none; z-index:10000; max-width:80vw; line-height:1.5;"></div>
+
+<script>
+(function() {
+    const canvas = document.getElementById('riceball-canvas');
+    const ctx = canvas.getContext('2d');
+    const textDiv = document.getElementById('birthday-text');
+    
+    function resize() {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+    }
+    window.addEventListener('resize', resize);
+    resize();
+
+    // Base64 Data URL for a small pixelated Japanese Rice Ball (Onigiri)
+    const onigiriImg = new Image();
+    onigiriImg.src = "data:image/svg+xml;utf8,<svg xmlns='http://w3.org' width='32' height='32' viewBox='0 0 32 32' shape-rendering='crispEdges'><path d='M14 4h4v2h-4zM12 6h2v2h-2zm6 0h2v2h-2zM10 8h2v2h-2zm10 0h2v2h-2zM8 10h2v2H8zm14 0h2v2h-2zM6 12h2v2H6zm18 0h2v2h-2zM4 14h2v14H4zm24 0h2v14h-2zM6 26h22v2H6z' fill='%23ffffff'/><path d='M14 6h4v2h-4zM12 8h2v2h-2zm6 0h2v2h-2zM10 10h2v2h-2zm10 0h2v2h-2zM8 12h2v14H8zm14 0h2v14h-2zM10 14h12v12H10z' fill='%23f0f0f0'/><path d='M12 20h8v6h-8z' fill='%23222222'/></svg>";
+
+    let x = -50; 
+    let y = canvas.height * 0.3; 
+    let vx = 4; 
+    let vy = 0; 
+    const gravity = 0.2; 
+    let animationStage = 'forward'; 
+
+    function animate() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        
+        if (animationStage === 'forward') {
+            x += vx;
+            if (x > canvas.width * 0.4) {
+                animationStage = 'falling';
+            }
+        } else if (animationStage === 'falling') {
+            x += vx * 0.5;
+            vy += gravity;
+            y += vy;
+            
+            if (y > canvas.height + 50) {
+                animationStage = 'done';
+                showText();
+            }
+        }
+
+        if (animationStage !== 'done') {
+            ctx.drawImage(onigiriImg, x, y, 64, 64);
+            requestAnimationFrame(animate);
+        }
+    }
+
+    function showText() {
+        textDiv.innerHTML = `hello my sweet big baby, loml, my hubby, world’s best bf, all time chef, big dih, and my personal favourite caretaker XD. first of all, happy birthday to my fav person, you are 22 now yayyyy my baby is getting bigger, i wish you prosper in your life in everything you do! good health, wealth, not only you but i wish every good fortune to step at your door and bump you with happiness and please love me too like you always do😛`;
+        textDiv.style.opacity = '1';
+    }
+
+    onigiriImg.onload = () => {
+        setTimeout(animate, 1000); 
+    };
+const imageInput = document.getElementById('imageInput');
+const displayImg = document.getElementById('displayImg');
+
+imageInput.addEventListener('change', function(event) {
+    const file = event.target.files[0]; // Get the selected file
+    
+    if (file) {
+        const reader = new FileReader(); // Create a file reader
+        
+        reader.onload = function(e) {
+            displayImg.src = e.target.result; // Set image source to the file data
+            displayImg.style.display = 'block'; // Make the image visible
+        };
+        
+        reader.readAsDataURL(file); // Convert the image to a usable URL string
+    }
+});
+
+})();
+</script>
+<input type="file" id="imageInput" accept="image/*">
+<img id="displayImg" alt="Your uploaded image will show here" style="display:none; max-width: 300px;">
+
+
 </body>
 </html>
